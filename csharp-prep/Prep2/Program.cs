@@ -50,7 +50,7 @@ class Program
 
 
 
-        Console.WriteLine($"You received a {letter}{sign}.");
+        Console.WriteLine($"Your grade is: {letter}{sign}.");
         if (passing.Contains(letter))
         {
             Console.WriteLine("Congrats on Passing this class!");
