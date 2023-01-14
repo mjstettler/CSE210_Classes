@@ -24,9 +24,16 @@ class Program
             }
             
         }
+        int sum = 0;
         foreach (int number in numbers)
         {
-            Console.WriteLine(number);
+            
+            sum += number;
+        
         }
+        Console.WriteLine($"The sum is: {sum}");
+        decimal average = sum / numbers.Count;
+        Console.WriteLine($"The average is: {average}");
+        Console.WriteLine($"The largest number is: {numbers.Max()}");
     }
 }
