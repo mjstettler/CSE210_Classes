@@ -35,5 +35,10 @@ class Program
         decimal average = sum / numbers.Count;
         Console.WriteLine($"The average is: {average}");
         Console.WriteLine($"The largest number is: {numbers.Max()}");
+        numbers.Sort();
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
     }
 }
