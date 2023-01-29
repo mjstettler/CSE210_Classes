@@ -5,7 +5,7 @@ class Entry
 {
     List<string> EntryArray = new List<string>();
 
-    public void SaveArray(string aDate, string aPrompt, string aUserEntry)
+    public void StoreArray(string aDate, string aPrompt, string aUserEntry)
     {
         
         EntryArray.Add($"Date: {aDate} Prompt: {aPrompt} Entry: {aUserEntry}");
@@ -17,6 +17,15 @@ class Entry
         foreach (string aEntry in EntryArray)
         {
             Console.WriteLine(aEntry);
+        }
+
+    }
+
+    public void SaveFile(string aFileName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(aFileName))
+        {
+            outputFile.WriteLine($"{EntryArray}");
         }
 
     }

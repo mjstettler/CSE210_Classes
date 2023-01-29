@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.IO.Enumeration;
 
 class Program
 {
@@ -23,11 +25,6 @@ class Program
             
             Console.WriteLine();
             Journal.Menu();
-            // foreach (string option in OptionsList)
-            // {
-                // Console.WriteLine(option);
-            // }
-
             Console.Write("-> ");
             int UserChoice = Convert.ToInt32(Console.ReadLine());
 
@@ -49,20 +46,17 @@ class Program
                 DateTime theCurrentTime = DateTime.Now;
                 dateText = theCurrentTime.ToShortDateString();
 
-                newEntry.SaveArray(dateText, journalPrompt, UserEntry);
-
-                
-
+                newEntry.StoreArray(dateText, journalPrompt, UserEntry);
+                Thread.Sleep(1000); // Time delay for smooth transition 
 
 
-                Thread.Sleep(1000);
             }
             else if (selected == "Display")
             {
                 Console.WriteLine();
                 Console.WriteLine("Displaying All Entries");
                 newEntry.Display();
-                Thread.Sleep(1000);
+                Thread.Sleep(1000); // Time delay for smooth transition
             }
             else if (selected == "Save")
             {
@@ -71,29 +65,42 @@ class Program
                 Console.WriteLine("-> ");
                 
                 string fileName = Console.ReadLine();
+                bool isMatch = FileSystemName.MatchesSimpleExpression("*.txt", fileName);
 
-                
                 Console.WriteLine("Saving File");
 
-                Thread.Sleep(1000);
+                if (!isMatch)
+                {
+                    fileName = fileName + ".txt";
+                }
+                Console.WriteLine(fileName);
+                
+                
+                
+
+                Console.WriteLine("File Saved!");
+                
+
+                Thread.Sleep(1000); // Time delay for smooth transition
+
             }
             else if (selected == "Load")
             {
                 Console.WriteLine();
                 Console.WriteLine("Loading Journal File");
-                Thread.Sleep(1000);
+                Thread.Sleep(1000); // Time delay for smooth transition
             }
             else if (selected == "Quit")
             {
                 Console.WriteLine();
                 Console.WriteLine("Exiting the program, Have a Nice Day!");
-                Thread.Sleep(1000);
+                Thread.Sleep(1000); // Time delay for smooth transition
             }
             else 
             {
                 Console.WriteLine();
                 Console.WriteLine($"{selected}. Please Select a Number 1-5.");
-                Thread.Sleep(1000);
+                Thread.Sleep(1000); // Time delay for smooth transition
             }
 
         
