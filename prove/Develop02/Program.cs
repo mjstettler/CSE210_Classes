@@ -8,26 +8,35 @@ class Program
 {
     static void Main(string[] args)
     {
-        PromptGen plist = new PromptGen();
-        plist.CreateList();
+        // Inta. Prompt generator class
+        PromptGen plist = new PromptGen(); 
+
+        // Creating the list of possible writing prompts
+        plist.CreateList(); 
+
+        // Inta. Entry class
         Entry newEntry = new Entry();
 
         Console.WriteLine();
         Console.WriteLine("Electronic Journal Recorder");
         Console.WriteLine("Pick an Option from the list Below");
 
+        // Variables for entry loop
         string selected = "";
         string UserEntry = "";
         string dateText = "";
         string journalPrompt = "";
         while (selected != "Quit")
         {
-            
+            // Spacing for white space and readability 
             Console.WriteLine();
+
+            // Journal program options menu
             Journal.Menu();
             Console.Write("-> ");
             int UserChoice = Convert.ToInt32(Console.ReadLine());
 
+            // Confusion Variable that uses a switch and sends info to if statement....Pointless use of both switch and if statement
             selected = GetSelection(UserChoice);
 
             
@@ -37,46 +46,57 @@ class Program
                 Console.WriteLine();
                 Console.WriteLine("Adding entry to Journal");
 
+                // Picking a Random writing prompt and printing to the console
                 journalPrompt = plist.GetPrompts();
                 Console.WriteLine(journalPrompt);
                 Console.WriteLine();
 
                 UserEntry = Console.ReadLine();
 
+                // Getting the current date for the entry
                 DateTime theCurrentTime = DateTime.Now;
                 dateText = theCurrentTime.ToShortDateString();
 
+                // Saving date, prompt, and user response to array inside Entry class
                 newEntry.StoreArray(dateText, journalPrompt, UserEntry);
                 Thread.Sleep(1000); // Time delay for smooth transition 
 
 
             }
+
             else if (selected == "Display")
             {
                 Console.WriteLine();
                 Console.WriteLine("Displaying All Entries");
+
+                // Displays all recorded entries back to the console for user to read.
                 newEntry.Display();
                 Thread.Sleep(1000); // Time delay for smooth transition
             }
+
             else if (selected == "Save")
             {
                 Console.WriteLine();
                 Console.WriteLine("What is the name of the file?");
                 Console.WriteLine("-> ");
-                
+
+                // User picked filename
                 string fileName = Console.ReadLine();
+
+                // Looks to see if the file name has the .txt extension
                 bool isMatch = FileSystemName.MatchesSimpleExpression("*.txt", fileName);
 
                 Console.WriteLine("Saving File");
 
-                if (!isMatch)
+                if (!isMatch) // adds .txt file extension if missing
                 {
                     fileName = fileName + ".txt";
                 }
-                Console.WriteLine(fileName);
+
                 
-                
-                
+
+                // Saving all user entered entries from saved array to a txt file
+                newEntry.SaveFile(fileName);
 
                 Console.WriteLine("File Saved!");
                 
@@ -87,8 +107,26 @@ class Program
             else if (selected == "Load")
             {
                 Console.WriteLine();
+
+                // Getting file name to load 
+                Console.WriteLine("What is the name of the file?");
+                Console.Write("-> ");
+
+                string fileName = Console.ReadLine();
+
+                // White space
+                Console.WriteLine();
+
+                // Looks to see if the file name has the .txt extension
+                bool isMatch = FileSystemName.MatchesSimpleExpression("*.txt", fileName);
                 Console.WriteLine("Loading Journal File");
+
+                if (!isMatch) // adds .txt file extension if missing
+                {
+                    fileName = fileName + ".txt";
+                }
                 Thread.Sleep(1000); // Time delay for smooth transition
+
             }
             else if (selected == "Quit")
             {

@@ -5,6 +5,10 @@ class Entry
 {
     List<string> EntryArray = new List<string>();
 
+    string _date;
+    string _prompt;
+    string _userEntry;
+
     public void StoreArray(string aDate, string aPrompt, string aUserEntry)
     {
         
@@ -25,7 +29,26 @@ class Entry
     {
         using (StreamWriter outputFile = new StreamWriter(aFileName))
         {
-            outputFile.WriteLine($"{EntryArray}");
+            foreach (string line in EntryArray)
+            {
+                outputFile.WriteLine(line);
+            }
+            
+        }
+
+    }
+
+    public void LoadFile(string aFileName)
+    {
+        string[] lines = System.IO.File.ReadAllLines(aFileName);
+
+        foreach (string line in lines)
+        {
+            EntryArray.Add(line);
+            Console.WriteLine("added entry");
+
+            
+
         }
 
     }
