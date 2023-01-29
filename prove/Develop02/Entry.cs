@@ -45,7 +45,7 @@ class Entry
         foreach (string line in lines)
         {
             EntryArray.Add(line);
-            Console.WriteLine("added entry");
+            
 
             
 

@@ -4,6 +4,10 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.IO.Enumeration;
 
+/* Exceeding expectations comment: I added functionality that prevents error if not entering a correct option. Also when saving and loading a file
+* I check to see if .txt extension is present in users fileName, if it is missing .txt is added automatically. 
+*/
+
 class Program
 {
     static void Main(string[] args)
@@ -51,7 +55,8 @@ class Program
                 Console.WriteLine(journalPrompt);
                 Console.WriteLine();
 
-                UserEntry = Console.ReadLine();
+                string blankLine = "\n";
+                UserEntry = Console.ReadLine() + blankLine;
 
                 // Getting the current date for the entry
                 DateTime theCurrentTime = DateTime.Now;
@@ -125,6 +130,10 @@ class Program
                 {
                     fileName = fileName + ".txt";
                 }
+
+                newEntry.LoadFile(fileName);
+
+                Console.WriteLine("File loaded successfully!");
                 Thread.Sleep(1000); // Time delay for smooth transition
 
             }
