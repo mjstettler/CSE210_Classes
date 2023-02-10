@@ -2,21 +2,21 @@ using System;
 
 class Words
 {
-
-    List<string> WordList = new List<string>();
-
+    List<string> ScriptureWords = new List<string>();
     List<string> HiddenWords = new List<string>();
 
-    public Words(string aWord)
-    {
-        HiddenWords.Add(aWord);
-    }
 
-    public void ShowScripture()
+
+
+
+
+
+    public void ShowScripture(string reference)
     {
-        foreach (string word in WordList)
+        foreach (string word in ScriptureWords)
         {
             Console.Write($"{word} ");
+
         }
     }
 }
