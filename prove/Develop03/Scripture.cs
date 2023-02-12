@@ -3,13 +3,13 @@ using System;
 
 class Scripture
 {
-    List<Word> words;
-    string[] verseWords;
+    private List<Word> words;
+    private string[] verseWords;
 
     public Scripture(string aScripture)
     {
         verseWords = aScripture.Split(" ");
-        words = new Word();
+        words = new List<Word>();
 
         foreach (string word in verseWords)
         {
