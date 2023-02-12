@@ -2,9 +2,9 @@ using System;
 
 class Word
 {
-    bool _isHidden;
-    string _textValue;
-    int _length;
+    private bool _isHidden;
+    private string _textValue;
+    private int _length;
 
     public Word(string aWord, int aLength)
     {
@@ -18,9 +18,17 @@ class Word
     {
         if (_isHidden)
         {
-            _textValue = $"_*{_textValue.Length}";
+            // Returns Blank ____ if word is hidden.
+            string blank = new string('_',_textValue.Length);
+            _textValue = blank;
             return _textValue;
         }
         return _textValue;
+    }
+
+    public string SetText()
+    {
+        string test1 = _textValue;
+        return test1;
     }
 }

@@ -2,10 +2,10 @@ using System;
 
 class Reference
 {
-    public string _book;
-    public int _chapter;
-    public int _verse;
-    public int? _secondVerse = null;
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int? _secondVerse = null;
     Scripture scripture;
 
     public List<Reference> references = new List<Reference>();
@@ -31,4 +31,8 @@ class Reference
 
     }
 
+    public void Display()
+    {
+        Console.WriteLine($"{_book} {_chapter}:{_verse} {scripture}");
+    }
 }

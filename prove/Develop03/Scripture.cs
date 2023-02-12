@@ -4,7 +4,7 @@ using System;
 class Scripture
 {
     private List<Word> words;
-    private string[] verseWords;
+    string[] verseWords;
 
     public Scripture(string aScripture)
     {
