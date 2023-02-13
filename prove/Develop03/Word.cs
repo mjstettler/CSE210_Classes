@@ -19,7 +19,7 @@ class Word
         if (_isHidden)
         {
             // Returns Blank ____ if word is hidden.
-            string blank = new string('_',_textValue.Length);
+            string blank = new string('_',_length);
             _textValue = blank;
             return _textValue;
         }

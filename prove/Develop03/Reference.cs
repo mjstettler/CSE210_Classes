@@ -33,6 +33,7 @@ class Reference
 
     public void Display()
     {
-        Console.WriteLine($"{_book} {_chapter}:{_verse} {scripture}");
+        
+        Console.WriteLine($"{_book} {_chapter}:{_verse} {scripture.GetScripture()}");
     }
 }

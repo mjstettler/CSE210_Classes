@@ -15,5 +15,28 @@ class Scripture
         {
             words.Add(new Word(word, word.Length));
         }
+
     }
+
+    public string GetScripture()
+    {
+        string currentScripture = "";
+        
+        int listLength = words.Count();
+        int loopCount = 0;
+        foreach (Word word in words)
+        {
+            if (loopCount == listLength-1)
+            {
+                currentScripture += word.GetText();
+            }
+            else 
+            {
+                currentScripture += word.GetText() + " ";
+            }
+            loopCount++;
+        }
+        return currentScripture;
+    }
+
 }
