@@ -26,9 +26,15 @@ class Word
         return _textValue;
     }
 
-    public string SetText()
+    public void HideWord()
     {
-        string test1 = _textValue;
-        return test1;
+        _isHidden = true;
     }
+
+
+    // public string SetText()
+    // {
+        // string test1 = _textValue;
+        // return test1;
+    // }
 }

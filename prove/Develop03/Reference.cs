@@ -35,5 +35,13 @@ class Reference
     {
         
         Console.WriteLine($"{_book} {_chapter}:{_verse} {scripture.GetScripture()}");
+        
+        scripture.RemoveRandomWords();
+    }
+
+    public int WordsLeft()
+    {
+        int wordsLeft = scripture.GetVisibleWordCount();
+        return wordsLeft;
     }
 }

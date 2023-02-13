@@ -8,20 +8,28 @@ class Program
         
         // Menu for selecting scripture
 
-        Console.WriteLine("\nWelcome to the Scripture memorizer! Press 'Enter' to memorize.\n");
+        Console.WriteLine("\nWelcome to the Scripture memorizer! Press 'Enter' to memorize. Or type 'quit' at anytime.\n");
 
+        string cont = "";
+        while (cont != "quit")
+            {
+                Reference.Display();
+                cont = Console.ReadLine();
+                Console.Clear();
 
-        Reference.Display();
-
+                if (Reference.WordsLeft() == 0)
+                {
+                    Reference.Display();
+                    Console.WriteLine("/nYou have now memorized a Scripture! Great Job!");
+                    Console.ReadLine();
+                    
+                    break;
+                }
+            }
         
 
         
 
-        
 
-
-
-
-        int choice = Int32.Parse(Console.ReadLine());
     }
 }
