@@ -20,11 +20,6 @@ class Scripture
             wordIndexes.Add(loopCount);
             loopCount++;
         }
-
-        
-        
-    
-
     }
 
     public string GetScripture()
