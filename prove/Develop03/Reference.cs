@@ -6,7 +6,7 @@ class Reference
     private int _chapter;
     private int _verse;
     private int? _secondVerse = null;
-    Scripture scripture;
+    Scripture _scripture;
 
     public List<Reference> references = new List<Reference>();
     
@@ -18,7 +18,7 @@ class Reference
         _chapter = aChapter;
         _verse = aVerse;
         _secondVerse = aSecondVerse;
-        scripture = new Scripture(aScripture);
+        _scripture = new Scripture(aScripture);
 
     }
 
@@ -27,21 +27,20 @@ class Reference
         _book = aBook;
         _chapter = aChapter;
         _verse = aVerse;
-        scripture = new Scripture(aScripture);
+        _scripture = new Scripture(aScripture);
 
     }
 
     public void Display()
     {
+        Console.WriteLine($"{_book} {_chapter}:{_verse}{_secondVerse} {_scripture.GetScripture()}");
         
-        Console.WriteLine($"{_book} {_chapter}:{_verse}{_secondVerse} {scripture.GetScripture()}");
-        
-        scripture.RemoveRandomWords();
+        _scripture.RemoveRandomWords();
     }
 
     public int WordsLeft()
     {
-        int wordsLeft = scripture.GetVisibleWordCount();
+        int wordsLeft = _scripture.GetVisibleWordCount();
         return wordsLeft;
     }
 }

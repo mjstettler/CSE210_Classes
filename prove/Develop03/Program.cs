@@ -18,18 +18,19 @@ class Program
 
         if (choice == 1)
         {
-            var Reference = new Reference("Ether", 12, 27, "And if men come unto me I will show unto them their weakness. I give unto men weakness that they may be humble; and my grace is sufficient for all men that humble themselves before me; for if they humble themselves before me, and have faith in me, then will I make weak things become strong unto them.");
+            var reference = new Reference("Ether", 12, 27, "And if men come unto me I will show unto them their weakness. I give unto men weakness that they may be humble; and my grace is sufficient for all men that humble themselves before me; for if they humble themselves before me, and have faith in me, then will I make weak things become strong unto them.");
+            reference.Display();
             string cont = "";
         
             while (cont != "quit")
                 {
-                    Reference.Display();
+                    reference.Display();
                     cont = Console.ReadLine();
                     Console.Clear();
 
-                    if (Reference.WordsLeft() == 0)
+                    if (reference.WordsLeft() == 0)
                     {
-                        Reference.Display();
+                        reference.Display();
                         Console.WriteLine("\nYou have now memorized a Scripture! Great Job!");
                         Console.ReadLine();
 
@@ -40,18 +41,18 @@ class Program
         }
         else if (choice == 2)
         {
-            var Reference = new Reference("James", 1, 5, -6, "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed.");
+            var reference = new Reference("James", 1, 5, -6, "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed.");
             string cont = "";
         
             while (cont != "quit")
                 {
-                    Reference.Display();
+                    reference.Display();
                     cont = Console.ReadLine();
                     Console.Clear();
 
-                    if (Reference.WordsLeft() == 0)
+                    if (reference.WordsLeft() == 0)
                     {
-                        Reference.Display();
+                        reference.Display();
                         Console.WriteLine("\nYou have now memorized a Scripture! Great Job!");
                         Console.ReadLine();
 
