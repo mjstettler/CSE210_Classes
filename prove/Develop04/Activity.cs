@@ -5,6 +5,11 @@ class Activity
     int _activityDuration = 0;
     List<string> randomPrompts = new List<string>();
 
+    public Activity()
+    {
+        
+    }
+
     public Activity(string aPrompt)
         {
             randomPrompts.Add(aPrompt);

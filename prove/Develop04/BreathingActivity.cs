@@ -1,12 +1,9 @@
 using System;
 
-class BreathingActivity : Activity
+class BreathingActivity
 {
-    string _activityName;
-    string _description;
+    private string _activityName;
+    private string _description;
 
-    public BreathingActivity()
-    {
-        
-    }
+    
 }
