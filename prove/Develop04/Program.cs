@@ -16,8 +16,9 @@ class Program
         switch (choice)
         {
             case 1:
-                theActivity.SetDuration();
-                theActivity.DisplayReadyTimer();
+                breathing.RunBreathingActivity();
+
+                
 
                 break;
             case 2:
@@ -30,10 +31,5 @@ class Program
                 break;
 
         }
-        int waitTime = theActivity.GetDuration()*1000;
-        
-        // theActivity.SetDuration(Int32.Parse(Console.ReadLine()));
-        Thread.Sleep(waitTime);
-        progress.DisplayAnimation();
     }
 }

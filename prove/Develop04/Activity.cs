@@ -2,8 +2,12 @@ using System;
 
 class Activity
 {
-    private int _activityDuration = 0;
+    private int _activityDuration = 0; //Time in seconds
+    protected string _description;
     private List<string> randomPrompts = new List<string>();
+    protected DateTime _startTime = DateTime.Now;
+    
+
 
     public Activity()
     {
@@ -15,16 +19,12 @@ class Activity
             randomPrompts.Add(aPrompt);
         }
     
-    public void SetDuration(int aDuration)
-    {
-        _activityDuration = aDuration;
-    }
 
     public void SetDuration()
     {
         Console.WriteLine("\nHow long would you like to do this activity in seconds? ");
         Console.Write("-->");
-        int seconds = Int32.Parse(Console.ReadLine())*1000;
+        int seconds = Int32.Parse(Console.ReadLine());
 
         _activityDuration = seconds;
     }
@@ -34,14 +34,14 @@ class Activity
         return _activityDuration;
     }
 
-    public void StartMessage()
+    public void StartMessage(string aActivityName)
     {
-
+        Console.WriteLine($"\nWelcome to the {aActivityName}.\n");
     }
 
-    public void FinishedMessage()
+    public void FinishedMessage(string aActivityName)
     {
-
+        Console.WriteLine("Congratulations you have successfully completed the {aActivityName}.");
     }
 
     public void DisplayReadyTimer()
@@ -54,7 +54,7 @@ class Activity
             Thread.Sleep(1000);
             Console.Write("\b \b");
         }
-        Console.Write(" GO!");
+        Console.Write(" Start\n");
         Console.CursorVisible = true;
     }
     
