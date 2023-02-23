@@ -2,12 +2,12 @@ using System;
 
 class Activity
 {
-    int _activityDuration = 0;
-    List<string> randomPrompts = new List<string>();
+    private int _activityDuration = 0;
+    private List<string> randomPrompts = new List<string>();
 
     public Activity()
     {
-        
+
     }
 
     public Activity(string aPrompt)
@@ -15,9 +15,23 @@ class Activity
             randomPrompts.Add(aPrompt);
         }
     
-    public void GetDuration(int aDuration)
+    public void SetDuration(int aDuration)
     {
         _activityDuration = aDuration;
+    }
+
+    public void SetDuration()
+    {
+        Console.WriteLine("\nHow long would you like to do this activity in seconds? ");
+        Console.Write("-->");
+        int seconds = Int32.Parse(Console.ReadLine())*1000;
+
+        _activityDuration = seconds;
+    }
+
+    public int GetDuration()
+    {
+        return _activityDuration;
     }
 
     public void StartMessage()
@@ -32,7 +46,16 @@ class Activity
 
     public void DisplayReadyTimer()
     {
-        Console.WriteLine("Get ready");
+        Console.CursorVisible = false;
+        Console.Write("\nGet ready ");
+        for (int i = 5; i > 0; i--)
+        {
+            Console.Write($".{i}");
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+        Console.Write(" GO!");
+        Console.CursorVisible = true;
     }
     
     public void DisplayActivityDescription(string aActivityName)
@@ -48,5 +71,7 @@ class Activity
         Console.WriteLine("3 - Start Listing Activity");
         Console.WriteLine("4 - Quit\n");
         Console.WriteLine("Please select an option from the menu. (1-4)\n");
+        Console.Write("-->");
+        
     }
 }

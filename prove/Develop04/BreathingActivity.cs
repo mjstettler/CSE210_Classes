@@ -1,6 +1,6 @@
 using System;
 
-class BreathingActivity
+class BreathingActivity : Activity
 {
     private string _activityName;
     private string _description;

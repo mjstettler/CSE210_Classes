@@ -6,11 +6,12 @@ class ProgressAnimation
         {
             int num = 0;
         string progress = "";
+        int loopOut = 0;
 
-        while (num != 1)
+        do
         {
             Console.Write(progress);
-            int loopNum = 0;
+            int loopIN = 0;
             do
             {
                 Console.CursorVisible= false;
@@ -40,13 +41,14 @@ class ProgressAnimation
                 Thread.Sleep(80);
                 Console.Write("\b"); // Erase the + character
 
-                loopNum++;
-            } while (loopNum <2);
-            progress = "-";
+                loopIN++;
+            } while (loopIN <2);
+            progress = "..";
 
-            loopNum = 0;
+            loopIN = 0;
+            loopOut++;
 
 
-        }
+        } while (loopOut <4);
     }
 }
