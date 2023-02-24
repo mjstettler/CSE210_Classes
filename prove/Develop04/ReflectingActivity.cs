@@ -36,9 +36,9 @@ class ReflectingActivity : Activity
 
         Console.Clear();
         Console.WriteLine($">{GetRandomQuestion()}");
-        Thread.Sleep((duration/2)*1000);
+        progress.SecondAnimation(duration/2);
         Console.WriteLine($">{GetRandomQuestion()}");
-        Thread.Sleep((duration/2)*1000);
+        progress.SecondAnimation(duration/2);
 
         
         FinishedMessage(_activityName, duration);

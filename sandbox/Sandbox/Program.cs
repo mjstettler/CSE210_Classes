@@ -1,13 +1,16 @@
 using System;
+using System.Threading;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        Student student = new Student("Brigham", "234");
-        string name = student.GetName();
-        string number = student.GetNumber();
-        Console.WriteLine(name);
-        Console.WriteLine(number);
+class Program {
+    static void Main(string[] args) {
+        Console.CursorVisible = false;
+        string[] spinner = { "/", "-", "\\", "|" };
+        int index = 0;
+        while (true) {
+            Console.Write("\r" + spinner[index]);
+            index = (index + 1) % spinner.Length;
+            Thread.Sleep(100);
+        }
     }
 }
+

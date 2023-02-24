@@ -2,11 +2,23 @@ using System;
 
 class ProgressAnimation
 {
+    public List<string> _increasing = new List<string>();
+
+    public ProgressAnimation()
+    {
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+        _increasing.Add(".");
+    }
     public void DisplayAnimation()
         {
-            int num = 0;
-        string progress = "";
-        int loopOut = 0;
+            string progress = "";
+            int loopOut = 0;
 
         do
         {
@@ -49,6 +61,31 @@ class ProgressAnimation
             loopOut++;
 
 
-        } while (loopOut <4);
+        } while (loopOut <3);
+    }
+
+
+
+    public void SecondAnimation(int aSeconds)
+    {   
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(aSeconds);
+        Console.CursorVisible = false;
+        while (DateTime.Now < endTime)
+        {    
+            foreach (string c in _increasing)
+            {
+                Console.Write(c);
+                Thread.Sleep(100);
+            }
+            foreach (string c in _increasing)
+            {
+                Console.Write("\b \b");
+                Thread.Sleep(100);
+            }
+        }
+        Console.CursorVisible = true;
     }
 }
+
+
