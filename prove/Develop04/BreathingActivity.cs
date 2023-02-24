@@ -3,7 +3,7 @@ using System;
 class BreathingActivity : Activity
 {
     private string _activityName;
-
+    
     public BreathingActivity()
     {
         _activityName = "Breathing Activity";
@@ -25,13 +25,15 @@ class BreathingActivity : Activity
         int duration = base.GetDuration();
         base.DisplayReadyTimer();
         BreathingTimer(duration);
+        base.FinishedMessage(_activityName, duration);
+        progress.DisplayAnimation();
     }
 
     public void BreathingTimer(int aActivityDuration)
     {
         _startTime = DateTime.Now;
         DateTime endTime = _startTime.AddSeconds(aActivityDuration);
-        while (_startTime < endTime)
+        while (DateTime.Now < endTime)
         {
 
             Console.Write("\nBreath in...");

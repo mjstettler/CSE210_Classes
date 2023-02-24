@@ -9,27 +9,27 @@ class Program
         BreathingActivity breathing = new BreathingActivity();
         ReflectingActivity reflecting = new ReflectingActivity();
         ListingActivity listing = new ListingActivity();
+        
 
-        theActivity.Menu();
-        int choice = Int32.Parse(Console.ReadLine());
-
-        switch (choice)
+        int choice = 0;
+        
+        while (choice != 4)
         {
-            case 1:
-                breathing.RunBreathingActivity();
+            theActivity.Menu();
+            choice = Int32.Parse(Console.ReadLine());
 
-                
-
-                break;
-            case 2:
-                theActivity.DisplayReadyTimer();
-                break;
-            case 3:
-                theActivity.DisplayReadyTimer();
-                break;
-            case 4:
-                break;
-
+            switch (choice)
+            {
+                case 1:
+                    breathing.RunBreathingActivity();               
+                    break;
+                case 2:
+                    reflecting.RunReflectingActivity();
+                    break;
+                case 3:
+                    theActivity.DisplayReadyTimer();
+                    break;
+            }
         }
-    }
+    }   
 }
