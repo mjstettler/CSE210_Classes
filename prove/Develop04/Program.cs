@@ -2,6 +2,9 @@ using System;
 
 class Program
 {
+    // Exceeded requirements by adding a summary report for the listing activity that shows the prompt
+    // with the user responses. Also the main program has a summary feed as the user exits which shows
+    // how many of each activity the user did, and it automatically changes activities to activity depending on the number.
     static void Main(string[] args)
     {
         ProgressAnimation progress = new ProgressAnimation();
