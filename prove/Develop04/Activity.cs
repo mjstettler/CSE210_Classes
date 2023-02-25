@@ -3,7 +3,9 @@ using System;
 class Activity
 {
     private int _activityDuration = 0; //Time in seconds
+    private int _animationTime = 5;
     protected string _description;
+    protected string _activityName;
     private List<string> _prompts = new List<string>();
     private List<string> _questions = new List<string>();
     protected DateTime _startTime = DateTime.Now;
@@ -37,6 +39,7 @@ class Activity
             _prompts.Add(aPrompt);
             _questions.Add(aQuestion);
         }
+    
 
     public string GetRandomPrompt()
     {
@@ -90,6 +93,7 @@ class Activity
             Console.Write("\b \b");
         }
         Console.Write(" Start\n");
+        Thread.Sleep(1000);
         Console.CursorVisible = true;
     }
     
@@ -108,5 +112,10 @@ class Activity
         Console.WriteLine("Please select an option from the menu. (1-4)\n");
         Console.Write("-->");
         
+    }
+
+    public int GetAnimationTime()
+    {
+        return _animationTime;
     }
 }

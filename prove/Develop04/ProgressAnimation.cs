@@ -62,6 +62,7 @@ class ProgressAnimation
 
 
         } while (loopOut <3);
+        Console.CursorVisible = true;
     }
 
 

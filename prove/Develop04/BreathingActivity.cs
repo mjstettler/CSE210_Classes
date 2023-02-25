@@ -4,6 +4,7 @@ class BreathingActivity : Activity
 {
     private string _activityName;
     
+    
     public BreathingActivity()
     {
         _activityName = "Breathing Activity";
@@ -31,8 +32,8 @@ class BreathingActivity : Activity
 
     public void BreathingTimer(int aActivityDuration)
     {
-        _startTime = DateTime.Now;
-        DateTime endTime = _startTime.AddSeconds(aActivityDuration);
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(aActivityDuration);
         while (DateTime.Now < endTime)
         {
 
