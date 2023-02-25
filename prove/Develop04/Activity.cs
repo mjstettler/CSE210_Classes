@@ -34,11 +34,12 @@ class Activity
         _questions.Add("How can you keep this experience in mind in the future?");
     }
 
-    public Activity(string aPrompt, string aQuestion)
-        {
-            _prompts.Add(aPrompt);
-            _questions.Add(aQuestion);
-        }
+
+    public Activity(string aActivityName, string aActivityDescription)
+    {
+        _activityName = aActivityName;
+        _description = aActivityDescription;
+    }
     
 
     public string GetRandomPrompt()
