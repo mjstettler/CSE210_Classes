@@ -1,0 +1,15 @@
+using System;
+
+public class Square : Shape
+{
+    private double _side;
+
+public Square(double aSide)
+{
+    _side = aSide;
+}
+    public override double GetArea()
+    {
+        return _side * _side;
+    }
+}
