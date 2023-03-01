@@ -5,7 +5,7 @@ public class Rectangle : Shape
     double _length;
     double _width;
 
-public Rectangle(double aLength, double aWidth)
+public Rectangle(double aLength, double aWidth, string aColor) : base(aColor)
 {
     _length = aLength;
     _width = aWidth;

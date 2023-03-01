@@ -4,6 +4,10 @@ public abstract class Shape
 {
     string _color;
 
+public Shape(string aColor)
+{
+    _color = aColor;
+}
     public string GetColor()
     {
         return _color;

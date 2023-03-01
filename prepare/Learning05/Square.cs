@@ -4,9 +4,10 @@ public class Square : Shape
 {
     private double _side;
 
-public Square(double aSide)
+public Square(double aSide, string aColor) : base(aColor)
 {
     _side = aSide;
+    
 }
     public override double GetArea()
     {

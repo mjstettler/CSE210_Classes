@@ -4,7 +4,7 @@ public class Circle : Shape
 {
     double _radius;
 
-public Circle(double aRadius)
+public Circle(double aRadius, string aColor) : base(aColor)
 {
     _radius = aRadius;
 }
