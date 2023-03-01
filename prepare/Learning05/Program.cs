@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         List<Shape> theShapes = new List<Shape>();
-        Square square = new Square(5, "green");
+        Square square = new Square(5, "Green");
         theShapes.Add(square);
         
         Rectangle rectangle = new Rectangle(5,10, "Yellow");
