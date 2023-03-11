@@ -2,11 +2,15 @@ using System;
 
 abstract public class Goal
 {
-    string _goalName;
-    string _goalDescription;
-    int _pointValue;
-    bool _isCompleted = false;
+    protected string _goalName;
+    protected string _goalDescription;
+    protected int _pointValue;
+    protected bool _isCompleted = false;
 
+    public Goal()
+    {
+
+    }
     public Goal(string aGoalName, string aGoalDescription)
     {
         _goalName = aGoalName;
@@ -36,11 +40,20 @@ abstract public class Goal
     {
         if (_isCompleted)
         {
-            return "x";
+            return "X";
         }
     return " ";
     }
+    public void isComplete(bool status)
+    {
+        _isCompleted = status;
+    }
 
-    abstract public int SetPoints();
+    virtual public string Display()
+    {
+        return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()})";
+    }
+
+    abstract public void SetPoints(int aPoints);
 
 }
