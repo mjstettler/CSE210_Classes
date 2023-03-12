@@ -2,6 +2,7 @@ using System;
 
 public class CheckListGoal : Goal
 {
+    List<Goal> _ckGoals = new List<Goal>();
     int _currentGoalProgress = 0;
     int _repeatGoalAmount;
 
@@ -37,4 +38,5 @@ public class CheckListGoal : Goal
     {
         return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()}) -- Currently completed: {GetCurrentGoalProgress()}/{GetRepeatGoalAmount()}";
     }
+
 }

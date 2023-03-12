@@ -3,7 +3,8 @@ using System;
 public class EternalGoal : Goal
 {
 
-    private bool _isCompleted = false;
+    List<Goal> _eGoals = new List<Goal>();
+    private new bool _isCompleted = false;
 
     public EternalGoal(string aGoalName, string aGoalDescription) : base(aGoalName,aGoalDescription)
     {
@@ -13,7 +14,4 @@ public class EternalGoal : Goal
     {
         throw new NotImplementedException();
     }
-    
-    
-    
 }

@@ -20,6 +20,7 @@ abstract public class Goal
 
     public void SetGoalName(string aGoalName)
     {
+        
         _goalName = aGoalName;
     }
 
