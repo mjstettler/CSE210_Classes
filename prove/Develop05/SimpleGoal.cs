@@ -4,7 +4,7 @@ public class SimpleGoal : Goal
 {
     
 
-    public SimpleGoal(string aGoalName, string aGoalDescription) : base(aGoalName, aGoalDescription)
+    public SimpleGoal(string aGoalName, string aGoalDescription, int aPointValue) : base(aGoalName, aGoalDescription, aPointValue)
     {
         
     }

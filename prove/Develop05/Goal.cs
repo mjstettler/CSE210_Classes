@@ -11,11 +11,11 @@ abstract public class Goal
     {
 
     }
-    public Goal(string aGoalName, string aGoalDescription)
+    public Goal(string aGoalName, string aGoalDescription, int aPointValue)
     {
         _goalName = aGoalName;
         _goalDescription = aGoalDescription;
-
+        _pointValue = aPointValue;
     }
 
     public void SetGoalName(string aGoalName)

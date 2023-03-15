@@ -4,12 +4,14 @@ public class CheckListGoal : Goal
 {
     List<Goal> _ckGoals = new List<Goal>();
     int _currentGoalProgress = 0;
-    int _repeatGoalAmount;
+    int _timesRepeated;
+    int _completionPoints;
 
 
-    public CheckListGoal(string aGoalName, string aGoalDescription) : base(aGoalName, aGoalDescription)
+    public CheckListGoal(string aGoalName, string aGoalDescription, int aPointValue, int aRepeat, int aExtraPoints) : base(aGoalName, aGoalDescription, aPointValue)
     {
-
+        _timesRepeated = aRepeat;
+        _completionPoints = aExtraPoints;
     }
 
     public void SetCurrentGoalProgress(int aProgress)
@@ -17,13 +19,13 @@ public class CheckListGoal : Goal
         _currentGoalProgress = aProgress;
     }
 
-    public void SetRepeatGoalAmount(int aRepeat)
+    public void SetTimesGoalRepeated(int aRepeat)
     {
-        _repeatGoalAmount = aRepeat;
+        _timesRepeated = aRepeat;
     }
-    public int GetRepeatGoalAmount()
+    public int GetTimesGoalRepeated()
     {
-        return _repeatGoalAmount;
+        return _timesRepeated;
     }
     public int GetCurrentGoalProgress()
     {
@@ -31,12 +33,22 @@ public class CheckListGoal : Goal
     }
     public override void SetPoints(int aPoints)
     {
-        throw new NotImplementedException();
+        _pointValue = aPoints;
+    }
+
+    public void SetCompletionPoints(int aPoints)
+    {
+        _completionPoints = aPoints;
+    }
+
+    public int GetCompletionPoints()
+    {
+        return _completionPoints;
     }
 
     public override string Display()
     {
-        return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()}) -- Currently completed: {GetCurrentGoalProgress()}/{GetRepeatGoalAmount()}";
+        return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()}) -- Currently completed: {GetCurrentGoalProgress()}/{GetTimesGoalRepeated()}";
     }
 
 }

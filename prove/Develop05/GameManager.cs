@@ -2,7 +2,7 @@ using System;
 
 public class GameManager
 {
-    private List<Goal> goals = new List<Goal>();
+    public List<Goal> _goals = new List<Goal>();
     private List<string> _mainMenu = new List<string>();
     private int _totalPoints;
 
@@ -12,6 +12,9 @@ public class GameManager
     private const int LOAD = 4;
     private const int RECORD = 5;
     private const int QUIT = 6;
+    private const int SIMPLE = 1;
+    private const int ETERNAL = 2;
+    private const int CHECKLIST =3;
     
 
     public GameManager()
@@ -30,7 +33,7 @@ public class GameManager
 
     public void ShowGoals()
     {
-        foreach (Goal g in goals)
+        foreach (Goal g in _goals)
         {
             Console.WriteLine($"{i}. {g.Display()}");
             i++;
@@ -54,7 +57,7 @@ public class GameManager
         return choice;
     }
 
-    public int GoalMenu()
+    public (int choice, string name, string description, int points) GoalMenu()
     {
         Console.WriteLine("What kind of Goal do you want to create?");
         Console.WriteLine("1. Simple Goal");
@@ -63,7 +66,16 @@ public class GameManager
         Console.Write("-> ");
         int choice = Convert.ToInt32(Console.ReadLine());
 
-        return choice;
+        Console.WriteLine("What is the Name of your goal?\n-> ");
+        string name = Console.ReadLine();
+
+        Console.Write("What is a short Description of your goal?\n-> ");
+        string description = Console.ReadLine();
+
+        Console.Write("How many points is this goal worth?\n-> ");
+        int points = Convert.ToInt32(Console.ReadLine());
+
+        return (choice:choice, name:name, description:description, points:points);
     }
     
     private void DisplayPlayerProgress()
@@ -109,7 +121,36 @@ public class GameManager
 
     private void CreateGoal()
     {
+        Goal goal;
 
+        var option = GoalMenu();
+        
+        if (option.choice == 1)
+        {
+            goal = new SimpleGoal(option.name, option.description, option.points);
+        }
+        else if (option.choice == 2)
+        {
+            goal = new EternalGoal(option.name, option.description, option.points);
+        }
+        else if (option.choice == 3)
+        {
+            Console.Write("How many times does this goal need to be repeated before marked completed?\n-> ");
+            int repeated = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("How many points does this goal earn when fully completed?\n-> ");
+            int completionPoints = Convert.ToInt32(Console.ReadLine());
+
+            goal = new CheckListGoal(option.name, option.description, option.points, repeated, completionPoints);
+
+            _goals.Add(goal);
+        }
+        else
+        {
+            Console.WriteLine("Invalid entry! Try again.");
+        }
+        
+        _goals.Add(goal);
     }
 private void ListGoals()
 {
