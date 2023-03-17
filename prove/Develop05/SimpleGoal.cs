@@ -19,4 +19,14 @@ public class SimpleGoal : Goal
         
     }
 
+    public override int GetRepeatTimes()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override int GetCurrentGoalProgress()
+    {
+        throw new NotImplementedException();
+    }
+
 }

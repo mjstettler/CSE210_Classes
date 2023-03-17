@@ -4,7 +4,9 @@ public class GameManager
 {
     public List<Goal> _goals = new List<Goal>();
     private List<string> _mainMenu = new List<string>();
+    private List<FileManager> _fileData;
     private int _totalPoints;
+    
 
     private const int CREATE = 1;
     private const int LIST = 2;
@@ -66,13 +68,31 @@ public class GameManager
         Console.Write("-> ");
         int choice = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("What is the Name of your goal?\n-> ");
+        string whichType;
+        if (choice == 1)
+        {
+            whichType = "Simple Goal";
+            Console.WriteLine($"\nCreating a {whichType}");
+        }
+        else if (choice == 2)
+        {
+            whichType = "Eternal Goal";
+            Console.WriteLine($"\nCreating an {whichType}");
+        }
+        else if (choice == 3)
+        {
+            whichType = "CheckList Goal";
+            Console.WriteLine($"\nCreating a {whichType}");
+        }
+
+        
+        Console.Write("\nWhat is the Name of your goal?\n-> ");
         string name = Console.ReadLine();
 
-        Console.Write("What is a short Description of your goal?\n-> ");
+        Console.Write("\nWhat is a short Description of your goal?\n-> ");
         string description = Console.ReadLine();
 
-        Console.Write("How many points is this goal worth?\n-> ");
+        Console.Write("\nHow many points is this goal worth?\n-> ");
         int points = Convert.ToInt32(Console.ReadLine());
 
         return (choice:choice, name:name, description:description, points:points);
@@ -93,16 +113,13 @@ public class GameManager
         switch (choice)
         {
             case CREATE:
-                Console.WriteLine("You are now Creating a goal");
-                Console.ReadKey();
+                CreateGoal();
                 break;
             case LIST:
-                Console.WriteLine("You are now Listing your goals");
-                Console.ReadKey();
+                ListGoals();
                 break;
             case SAVE:
-                Console.WriteLine("You are now Saving");
-                Console.ReadKey();
+                Save();
                 break;
             case LOAD:
                 Console.WriteLine("You are now Loading");
@@ -121,17 +138,21 @@ public class GameManager
 
     private void CreateGoal()
     {
-        Goal goal;
+        Console.WriteLine();
 
         var option = GoalMenu();
         
+        Goal goal;
+
         if (option.choice == 1)
         {
             goal = new SimpleGoal(option.name, option.description, option.points);
+            _goals.Add(goal);
         }
         else if (option.choice == 2)
         {
             goal = new EternalGoal(option.name, option.description, option.points);
+            _goals.Add(goal);
         }
         else if (option.choice == 3)
         {
@@ -150,22 +171,53 @@ public class GameManager
             Console.WriteLine("Invalid entry! Try again.");
         }
         
-        _goals.Add(goal);
+        
     }
-private void ListGoals()
-{
+    private void ListGoals()
+    {
+        Console.WriteLine();
+        foreach (Goal goal in _goals)
+        {
+            Console.WriteLine(goal.Display());
+        }
+        Console.WriteLine("\nPress Enter to return to the Main Menu.\n");
+        Console.ReadKey();
+    }
+    private void Save()
+    {   
+        FileManager file = new FileManager();
 
-}
-private void Save()
-{
+        string goalText;
+        List<string> goalData = new List<string>();
 
-}
-private void Load()
-{
+        Console.Write("What do you want to name the file?\n-> ");
+        string fileName = Console.ReadLine()+".txt";
 
-} 
-private void RecordProgress()
-{
+        foreach (Goal goal in _goals)
+        {
+            string type = Convert.ToString(goal.GetType());
+            if (type == "CheckListGoal")
+            {
+                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetCurrentGoalProgress()},{goal.GetRepeatTimes()}"; 
+                goalData.Add(goalText);
+            }
+            else
+            {
+                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetGoalStatus()}"; 
+                goalData.Add(goalText);
+            }
+            
+        }
+        file.SaveFile(fileName, goalData);
+
+    }
+    private void Load()
+    {
+
+    } 
+    private void RecordProgress()
+    {
+
+    }
     
-}
 }

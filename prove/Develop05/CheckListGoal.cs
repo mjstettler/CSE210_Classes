@@ -23,11 +23,11 @@ public class CheckListGoal : Goal
     {
         _timesRepeated = aRepeat;
     }
-    public int GetTimesGoalRepeated()
+    public override int GetRepeatTimes()
     {
         return _timesRepeated;
     }
-    public int GetCurrentGoalProgress()
+    public override int GetCurrentGoalProgress()
     {
         return _currentGoalProgress;
     }
@@ -48,7 +48,7 @@ public class CheckListGoal : Goal
 
     public override string Display()
     {
-        return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()}) -- Currently completed: {GetCurrentGoalProgress()}/{GetTimesGoalRepeated()}";
+        return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()}) -- Currently completed: {GetCurrentGoalProgress()}/{GetRepeatTimes()}";
     }
 
 }

@@ -45,15 +45,24 @@ abstract public class Goal
         }
     return " ";
     }
+
     public void isComplete(bool status)
     {
         _isCompleted = status;
+    }
+
+    public int GetPoints()
+    {
+        return _pointValue;
     }
 
     virtual public string Display()
     {
         return $"[{GetGoalStatus()}] {GetGoalName()} ({GetGoalDescription()})";
     }
+
+    abstract public int GetRepeatTimes();
+    abstract public int GetCurrentGoalProgress();
 
     abstract public void SetPoints(int aPoints);
 
