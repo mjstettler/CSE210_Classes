@@ -51,7 +51,7 @@ abstract public class Goal
         _isCompleted = status;
     }
 
-    public int GetPoints()
+    public virtual int GetPoints()
     {
         return _pointValue;
     }

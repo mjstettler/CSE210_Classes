@@ -126,7 +126,7 @@ public class GameManager
                 Console.ReadKey();
                 break;
             case RECORD:
-                Console.WriteLine("You are now Recording");
+                RecordProgress();
                 Console.ReadKey();
                 break;
             
@@ -217,7 +217,39 @@ public class GameManager
     } 
     private void RecordProgress()
     {
+        int i = 1;
+        foreach (Goal goal in _goals)
+        {
+            Console.WriteLine($"{i}. {goal.Display()}");
+            i++;
+        }
 
+        Console.Write("\nWhich goal do you want to record? ");
+        int choice = Convert.ToInt32(Console.ReadLine());
+        string choiceType =Convert.ToString(_goals[choice-1].GetType());
+
+        if (_goals[choice-1].GetGoalStatus() == "X")
+        {
+            Console.WriteLine("Sorry that goal is already completed, try again");
+        }
+
+        else
+        {
+            if (choiceType == "SimpleGoal")
+            {
+                _goals[choice-1].isComplete(true);
+                _totalPoints += _goals[choice-1].GetPoints();
+            }
+            else if (choiceType == "CheckListGoal")
+            {
+                _totalPoints += _goals[choice-1].GetPoints();
+            }
+            else if (choiceType == "EternalGoal")
+            {
+                _totalPoints += _goals[choice-1].GetPoints();
+            }
+        }
+        
     }
     
 }
