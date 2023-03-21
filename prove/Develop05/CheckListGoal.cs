@@ -37,18 +37,20 @@ public class CheckListGoal : Goal
     }
     public override int GetPoints()
     {
-        int points;
+        int points = 0;
+        _currentGoalProgress++;
+
         if (_currentGoalProgress < _timesRepeated)
         {
-            _currentGoalProgress++;
             points = base.GetPoints();
         }
         else if (_currentGoalProgress == _timesRepeated)
         {
             points = _completionPoints;
+            isComplete(true);
         }
         return points;
-    }
+    } 
 
     public void SetCompletionPoints(int aPoints)
     {

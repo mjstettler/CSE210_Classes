@@ -45,6 +45,7 @@ public class GameManager
     public int MainMenu()
     {
         Console.Clear();
+        Console.WriteLine($"You currently have: {_totalPoints} points\n");
         Console.WriteLine("\nMenu Options:\n");
         int i = 1;
 
@@ -108,12 +109,15 @@ public class GameManager
         int choice;
         do 
         {
+        
         choice = MainMenu();
 
         switch (choice)
         {
             case CREATE:
                 CreateGoal();
+                Console.WriteLine("New Goal Created!");
+                Thread.Sleep(2000);
                 break;
             case LIST:
                 ListGoals();
@@ -127,12 +131,18 @@ public class GameManager
                 break;
             case RECORD:
                 RecordProgress();
-                Console.ReadKey();
+                Console.WriteLine("Goal Progress Recorded!");
+                Thread.Sleep(2000);
+                break;
+            default:
+                Console.WriteLine("\nSorry that was not an option, try again.\n");
+                Thread.Sleep(2000);
                 break;
             
 
         }
-        DisplayPlayerProgress();
+        // DisplayPlayerProgress();
+        // Thread.Sleep(2000);
         } while (choice != QUIT);
     }
 
@@ -193,17 +203,21 @@ public class GameManager
         Console.Write("What do you want to name the file?\n-> ");
         string fileName = Console.ReadLine()+".txt";
 
+        goalData.Add(Convert.ToString(_totalPoints));
+
         foreach (Goal goal in _goals)
         {
             string type = Convert.ToString(goal.GetType());
+            
+
             if (type == "CheckListGoal")
             {
-                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetCurrentGoalProgress()},{goal.GetRepeatTimes()}"; 
+                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetCurrentGoalProgress()},{goal.GetRepeatTimes()},{goal.GetisComplete()}"; 
                 goalData.Add(goalText);
             }
             else
             {
-                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetGoalStatus()}"; 
+                goalText = $"{goal.GetType()},{goal.GetGoalName()},{goal.GetGoalDescription()},{goal.GetPoints()},{goal.GetisComplete()}"; 
                 goalData.Add(goalText);
             }
             
@@ -211,8 +225,19 @@ public class GameManager
         file.SaveFile(fileName, goalData);
 
     }
-    private void Load()
+    public void Load()
     {
+        FileManager file = new FileManager();
+
+        Console.Write("\nWhat is the filename you want to Load?\n-> ");
+        string fileName = Console.ReadLine();
+
+        List<string> fileData = file.LoadFile(fileName);
+        int tPoints = Convert.ToInt32(fileData[0]);
+        SetTotalPoints(tPoints);
+
+        
+        
 
     } 
     private void RecordProgress()
@@ -231,6 +256,7 @@ public class GameManager
         if (_goals[choice-1].GetGoalStatus() == "X")
         {
             Console.WriteLine("Sorry that goal is already completed, try again");
+            Thread.Sleep(2000);
         }
 
         else
@@ -239,17 +265,28 @@ public class GameManager
             {
                 _goals[choice-1].isComplete(true);
                 _totalPoints += _goals[choice-1].GetPoints();
+                Console.WriteLine($"You have earned {_goals[choice-1].GetPoints()} points!\n");
+                Thread.Sleep(2000);
             }
             else if (choiceType == "CheckListGoal")
             {
                 _totalPoints += _goals[choice-1].GetPoints();
+                Console.WriteLine($"You have earned {_goals[choice-1].GetPoints()} points!\n");
+                Thread.Sleep(2000);
             }
             else if (choiceType == "EternalGoal")
             {
                 _totalPoints += _goals[choice-1].GetPoints();
+                Console.WriteLine($"You have earned {_goals[choice-1].GetPoints()} points!\n");
+                Thread.Sleep(2000);
             }
+            DisplayPlayerProgress();
+            Thread.Sleep(2000);
         }
-        
+    }
+    private void SetTotalPoints(int total)
+    {
+        _totalPoints = total;
     }
     
 }

@@ -28,9 +28,16 @@ public class FileManager
         
     }
 
-    public void LoadFile()
+    public List<string> LoadFile(string aFileName)
     {
+        string[] lines = System.IO.File.ReadAllLines(aFileName);
 
+        foreach (string line in lines)
+        {
+            _data.Add(line);
+        }
+
+        return _data;
     }
 
 }

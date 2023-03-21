@@ -50,6 +50,10 @@ abstract public class Goal
     {
         _isCompleted = status;
     }
+    public bool GetisComplete()
+    {
+        return _isCompleted;
+    }
 
     public virtual int GetPoints()
     {
