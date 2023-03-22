@@ -126,7 +126,7 @@ public class GameManager
                 Save();
                 break;
             case LOAD:
-                Console.WriteLine("You are now Loading");
+                Load();
                 Console.ReadKey();
                 break;
             case RECORD:
@@ -229,14 +229,15 @@ public class GameManager
     {
         FileManager file = new FileManager();
 
-        Console.Write("\nWhat is the filename you want to Load?\n-> ");
-        string fileName = Console.ReadLine();
-
-        List<string> fileData = file.LoadFile(fileName);
-        int tPoints = Convert.ToInt32(fileData[0]);
-        SetTotalPoints(tPoints);
-
         
+
+        Console.Write("\nWhat is the filename you want to Load?\n-> ");
+        string fileName = Console.ReadLine()+".txt";
+        var parts = file.LoadFile(fileName);
+
+        string[] fileData = parts.fileInfo;
+        int tPoints = parts.points;
+        SetTotalPoints(tPoints);
         
 
     } 

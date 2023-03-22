@@ -3,10 +3,6 @@ using System.IO;
 
 public class FileManager
 {
-
-    string _fileName;
-    List<string> _data = new List<string>();
-
     public FileManager()
     {
         
@@ -28,16 +24,40 @@ public class FileManager
         
     }
 
-    public List<string> LoadFile(string aFileName)
+    public (string[] fileInfo, int points) LoadFile(string aFileName)
     {
         string[] lines = System.IO.File.ReadAllLines(aFileName);
+        Console.WriteLine(lines[0]);
+        int points = Convert.ToInt32(lines[0]);
 
+        int length = lines.Count();
+        string[] _data = new string[length];
+
+        int i = 0;
         foreach (string line in lines)
         {
-            _data.Add(line);
+            _data[i++] = line.Split(",").ToString();
+            if (_data[1] == "CheckListGoal")
+            {
+                Console.WriteLine("Yep this is a checklist goal");
+            }
+            else if (_data[1] == "SimpleGoal")
+            {
+                Console.WriteLine("This is not a Check List, it is simple");
+            }
         }
+        foreach (string str in _data)
+        {
+            Console.WriteLine(str);
+        }
+        Console.WriteLine(_data[1]);
 
-        return _data;
+        if (_data[0] == "CheckListGoal")
+        {
+            Console.WriteLine("Yep this is a checklist goal");
+        }
+        
+        return (fileInfo:_data, points:points);
     }
 
 }
