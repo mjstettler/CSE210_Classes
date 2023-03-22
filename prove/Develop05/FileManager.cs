@@ -30,13 +30,16 @@ public class FileManager
         Console.WriteLine(lines[0]);
         int points = Convert.ToInt32(lines[0]);
 
+        Console.WriteLine(lines[1]);
+
         int length = lines.Count();
         string[] _data = new string[length];
 
         int i = 0;
         foreach (string line in lines)
         {
-            _data[i++] = line.Split(",").ToString();
+            _data[i] = line.Split(",").ToString();
+            i++;
             if (_data[1] == "CheckListGoal")
             {
                 Console.WriteLine("Yep this is a checklist goal");

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class GameManager
 {
@@ -6,6 +7,11 @@ public class GameManager
     private List<string> _mainMenu = new List<string>();
     private List<FileManager> _fileData;
     private int _totalPoints;
+    private string _playerLevel = "Nursery";
+    private int _levelScore = 100;
+    List<string> _status = new List<string>();
+    private int _statusIndex = 0;
+    
     
 
     private const int CREATE = 1;
@@ -29,6 +35,30 @@ public class GameManager
         _mainMenu.Add("Load Goals");
         _mainMenu.Add("Record Goal Progress");
         _mainMenu.Add("Quit");
+
+        _status.Add("Nursery");
+        _status.Add("Sunbeam");
+        _status.Add("CTR");
+        _status.Add("Valiant");
+        _status.Add("Deacon");
+        _status.Add("Teacher");
+        _status.Add("Priest");
+        _status.Add("Elder");
+        _status.Add("Missionary");
+        _status.Add("Returned Missionary");
+        _status.Add("Temple Marriage");
+        _status.Add("High Priest");
+        _status.Add("Bishop");
+        _status.Add("Stake President");
+        _status.Add("Area President");
+        _status.Add("Quorum of the 70");
+        _status.Add("Apostle");
+        _status.Add("First Presidency");
+        _status.Add("Prophet");
+    }
+    private string GetPlayerLevel()
+    {
+        return _playerLevel;
     }
 
     int i = 1;
@@ -45,7 +75,7 @@ public class GameManager
     public int MainMenu()
     {
         Console.Clear();
-        Console.WriteLine($"You currently have: {_totalPoints} points\n");
+        DisplayPlayerProgress();
         Console.WriteLine("\nMenu Options:\n");
         int i = 1;
 
@@ -62,31 +92,40 @@ public class GameManager
 
     public (int choice, string name, string description, int points) GoalMenu()
     {
-        Console.WriteLine("What kind of Goal do you want to create?");
-        Console.WriteLine("1. Simple Goal");
-        Console.WriteLine("2. Eternal Goal");
-        Console.WriteLine("3. CheckList Goal");
-        Console.Write("-> ");
-        int choice = Convert.ToInt32(Console.ReadLine());
+        int choice = 0;
+        do
+        {
+            Console.WriteLine("What kind of Goal do you want to create?");
+            Console.WriteLine("1. Simple Goal");
+            Console.WriteLine("2. Eternal Goal");
+            Console.WriteLine("3. CheckList Goal");
+            Console.Write("-> ");
+            choice = Convert.ToInt32(Console.ReadLine());
+            if (choice > 3 || choice < 1)
+            {
+                Console.WriteLine("\n\n---Invalid entry, try again.---\n\n");
+                Thread.Sleep(1200);
+            }
+        } while (choice != 1 && choice != 2 && choice != 3);
 
-        string whichType;
-        if (choice == 1)
-        {
-            whichType = "Simple Goal";
-            Console.WriteLine($"\nCreating a {whichType}");
-        }
-        else if (choice == 2)
-        {
-            whichType = "Eternal Goal";
-            Console.WriteLine($"\nCreating an {whichType}");
-        }
-        else if (choice == 3)
-        {
-            whichType = "CheckList Goal";
-            Console.WriteLine($"\nCreating a {whichType}");
-        }
+            string whichType;
+            if (choice == 1)
+            {
+                whichType = "Simple Goal";
+                Console.WriteLine($"\nCreating a {whichType}");
+            }
+            else if (choice == 2)
+            {
+                whichType = "Eternal Goal";
+                Console.WriteLine($"\nCreating an {whichType}");
+            }
+            else if (choice == 3)
+            {
+                whichType = "CheckList Goal";
+                Console.WriteLine($"\nCreating a {whichType}");
+            }
 
-        
+
         Console.Write("\nWhat is the Name of your goal?\n-> ");
         string name = Console.ReadLine();
 
@@ -97,11 +136,12 @@ public class GameManager
         int points = Convert.ToInt32(Console.ReadLine());
 
         return (choice:choice, name:name, description:description, points:points);
+        
     }
     
     private void DisplayPlayerProgress()
     {
-        Console.WriteLine($"You currently have {_totalPoints} points.");
+        Console.WriteLine($"You currently have {_totalPoints} points.\nPlayer Level: {_playerLevel}");
     }
 
     public void Start()
@@ -134,6 +174,20 @@ public class GameManager
                 Console.WriteLine("Goal Progress Recorded!");
                 Thread.Sleep(2000);
                 break;
+            case QUIT:
+                Console.Write("\nDo you want to save before quitting? (y/n)\n-> ");
+                string answer = Console.ReadLine();
+                if (answer == "y")
+                {
+                    Save();
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Remember to come back and log your progress");
+                    break;
+                }
+
             default:
                 Console.WriteLine("\nSorry that was not an option, try again.\n");
                 Thread.Sleep(2000);
@@ -281,6 +335,8 @@ public class GameManager
                 Console.WriteLine($"You have earned {_goals[choice-1].GetPoints()} points!\n");
                 Thread.Sleep(2000);
             }
+            
+            LevelUp();
             DisplayPlayerProgress();
             Thread.Sleep(2000);
         }
@@ -289,5 +345,25 @@ public class GameManager
     {
         _totalPoints = total;
     }
-    
+    private void LevelUp()
+    {
+        
+        if (_playerLevel == "Prophet")
+        {
+            Console.WriteLine("You have now joined the city of Enoch! Congrats!");
+        }
+        else if (_totalPoints >= _levelScore && _totalPoints < _levelScore+200)
+        {
+            _statusIndex++;
+            _playerLevel = _status[_statusIndex];
+            
+            Thread.Sleep(1500);
+            _levelScore += 200;
+            Firework fireWorks = new Firework();
+            
+            fireWorks.DrawFirework();
+            Console.WriteLine($"\n---Congrats you have reached status of {GetPlayerLevel()}!!!---\n");
+        }
+        
+    }
 }
