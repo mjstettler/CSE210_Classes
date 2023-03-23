@@ -10,4 +10,9 @@ public class Comment
         _name = aName;
         _commentText = aText;
     }
+
+    public string GetCommentInfo()
+    {
+        return $"Name: {_name}. Comment: {_commentText}";
+    }
 }
