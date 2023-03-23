@@ -6,6 +6,7 @@ public class Video
     string _title;
     string _author;
     double _vidLength;
+    
 
     public Video(string aTitle, string aAuthor, double aSeconds)
     {
@@ -22,5 +23,19 @@ public class Video
     public int GetNumberOfComments()
     {
         return _comments.Count();
+    }
+    public void SetComment(string aName, string aText)
+    {
+        _comments.Add(new Comment(aName, aText));
+    }
+    public void DisplayComments()
+    {
+        int i= 1;
+        foreach (Comment comment in _comments)
+        {   
+            Console.WriteLine($"{i} - {comment.GetCommentInfo()}");
+            i++;
+        }
+        
     }
 }
