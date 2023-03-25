@@ -13,6 +13,6 @@ public class Comment
 
     public string GetCommentInfo()
     {
-        return $"Name: {_name}. Comment: {_commentText}";
+        return $"Commenter Name: {_name}. Comment: {_commentText}";
     }
 }

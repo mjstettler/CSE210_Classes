@@ -41,8 +41,9 @@ public class Video
 
     public void DisplayVideoInfo()
     {
-        Console.WriteLine($"Title: {_title}, Author: {_author}, Length of video: {_vidLength}, Number of Comments: {GetNumberOfComments()}");
+        Console.WriteLine($"Video Title: {_title}, Author: {_author}, Length of video: {_vidLength} Seconds, Number of Comments: {GetNumberOfComments()}");
         Console.WriteLine($"Comments:\n");
         DisplayComments();
+        Console.WriteLine();
     }
 }
