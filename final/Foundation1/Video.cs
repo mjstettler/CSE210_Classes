@@ -38,4 +38,11 @@ public class Video
         }
         
     }
+
+    public void DisplayVideoInfo()
+    {
+        Console.WriteLine($"Title: {_title}, Author: {_author}, Length of video: {_vidLength}, Number of Comments: {GetNumberOfComments()}");
+        Console.WriteLine($"Comments:\n");
+        DisplayComments();
+    }
 }

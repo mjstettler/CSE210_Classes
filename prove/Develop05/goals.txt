@@ -1,0 +1,2 @@
+SimpleGoal,Eat food,Eat a better diet of food,20,X
+EternalGoal,Sleep,Sleep everynight,10, 

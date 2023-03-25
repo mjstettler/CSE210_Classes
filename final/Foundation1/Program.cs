@@ -2,11 +2,18 @@ using System;
 
 class Program
 {
+    
     static void Main(string[] args)
     {
+        List<Video> _videos = new List<Video>();
+
         Video youtubeCat = new Video("Kittens", "Prrrfection", 3500);
         Video youtubeDogs = new Video("Mans best friend", "BloodHound Media", 5000);
         Video youtubePeople = new Video("This man did what? Watch to see!", "Clickbaiter supreme", 6050);
+
+        _videos.Add(youtubeCat);
+        _videos.Add(youtubeDogs);
+        _videos.Add(youtubePeople);       
 
         youtubeCat.SetComment("LonelyGuy19", "I loved this video! Please post more!");
         youtubeCat.SetComment("NotyourMom", "My cat does that all the time!");
@@ -20,7 +27,11 @@ class Program
         youtubePeople.SetComment("LyuC","Click bait! This is just another cat video");
         youtubePeople.SetComment("PapaBear","I did the same thing...Wait is that me? Where did you get this footage?");
         
-        Console.WriteLine(youtubeCat.GetNumberOfComments());
-        youtubeCat.DisplayComments();
+        foreach (Video video in _videos)
+        {
+            video.DisplayVideoInfo();
+        }
+        
+        
     }
 }
