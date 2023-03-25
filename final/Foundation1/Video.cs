@@ -2,10 +2,10 @@ using System;
 
 public class Video
 {
-    List<Comment> _comments;
-    string _title;
-    string _author;
-    double _vidLength;
+    private List<Comment> _comments;
+    private string _title;
+    private string _author;
+    private double _vidLength;
     
 
     public Video(string aTitle, string aAuthor, double aSeconds)
