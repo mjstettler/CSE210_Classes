@@ -7,7 +7,7 @@ class Customer
 
     public Customer(string aName)
     {
-
+        _name = aName;
     }
 
     public void SetAddress(string aStreet, string aCity, string aStateProvidence, string aCountry)
@@ -28,5 +28,6 @@ class Customer
     {
         return _customerAddress.GetAddress();
     }
+
 }
 

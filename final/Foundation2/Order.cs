@@ -8,7 +8,6 @@ class Order
     public Order()
     {
         _products = new List<Product>();
-        
     }
     public double GetProductTotal()
     {
@@ -19,21 +18,24 @@ class Order
         }
         return total;
     }
-    public double GetOrderTotal()
+    public void GetOrderTotal()
     {
-        return GetOrderTotal() + GetShippingCost();
+        Console.WriteLine($"Order total: ${GetProductTotal() + GetShippingCost()}\n");
     }
-    public string GetShippingLabel()
+    public void GetShippingLabel()
     {
-        return $"{_currentCustomer.GetName()}\n{_currentCustomer.GetAddress()}";
+        Console.WriteLine("Shipping Label:\n");
+        Console.WriteLine($"{_currentCustomer.GetName()}\n{_currentCustomer.GetAddress()}\n");
     }
     public void GetPackingLabel()
     {
-        Console.WriteLine("Product    ID      Quantity    Price");
+        Console.WriteLine("Packing Label");
+        Console.WriteLine("\nProducts:\n");
         foreach (Product product in _products)
         {
-            Console.WriteLine($"{product.GetName()}, {product.GetId()}, {product.GetQuantity()}, {product.GetSinglePrice()}");
+            Console.WriteLine($"{product.GetName()},  PLU# {product.GetId()}");
         }
+        Console.WriteLine();
     }
 
     public double GetShippingCost()
@@ -44,5 +46,20 @@ class Order
         }
         else
             return 35;
+    }
+
+    public void AddProduct(string aName, int aID, double aPrice, int aQuantity)
+    {
+        _products.Add(new Product(aName, aID, aPrice, aQuantity));
+    }
+    
+    public void SetCustomerName(string aName)
+    {
+        _currentCustomer = new Customer(aName);
+    }
+
+    public void SetCustomerAddress(string aStreet, string aCity, string aStateProvidence, string aCountry)
+    {
+        _currentCustomer.SetAddress(aStreet,aCity,aStateProvidence,aCountry);
     }
 }
