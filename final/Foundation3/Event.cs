@@ -24,20 +24,20 @@ class Event
     }
 
     public void StandardDetails()
-    {
-        Console.WriteLine($"{_eventTitle}, {_description}, {_date}, {_time}, {_venuAddress}");
+    {   
+        Console.WriteLine("\n---Standard Details---\n");
+        Console.WriteLine($"Event: {_eventTitle}\nDescription: {_description}\nDate: {_date}\nTime: {_time}\nAddress: {_venuAddress.DisplayAddress()}");
+        Console.WriteLine();
     }
     public virtual void FullDetails()
     {
-        Console.WriteLine($"{_eventTitle}, {_description}, {_date}, {_time}, {_venuAddress}");
+        Console.WriteLine($"Event: {_eventTitle}\nDescription: {_description}\nDate: {_date}\nTime: {_time}\nAddress:{_venuAddress.DisplayAddress()}");
+        Console.WriteLine();
     }
 
-    public void ShortDetails(List<Event> aEvents)
+    public string ShortDetails(Type aType)
     {
-        foreach (Event eve in aEvents)
-        {
-            Console.WriteLine($"{eve.GetType()}, {_eventTitle}, {_description}");
-        }
+        return $"\n---Short Details---\n\nEvent Type: {aType}\nTitle: {_eventTitle}\nDescription: {_description}\n";
     }
 
     public string GetDate()

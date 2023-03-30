@@ -15,9 +15,9 @@ class Address
         _country = aCountry;
     }
 
-    public void DisplayAddress()
+    public string DisplayAddress()
     {
-        Console.WriteLine($"{_street}\n{_city}, {_stateProvidence}, {_country}");
+        return $"\n{_street}\n{_city}, {_stateProvidence}, {_country}";
     }
 
 }

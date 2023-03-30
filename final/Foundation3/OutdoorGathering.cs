@@ -11,6 +11,8 @@ class OutdoorGathering : Event
 
     public override void FullDetails()
     {
-        base.FullDetails();
+        Console.WriteLine("\n---Full Details---\n");
+        Console.WriteLine($"Event: {_eventTitle}\nDescription: {_description}\nDate: {_date}\nTime: {_time}\nAddress:{_venuAddress.DisplayAddress()}\nWeather: {_weatherDisclaimer}");
+        Console.WriteLine();
     }
 }

@@ -13,6 +13,8 @@ class Lecture : Event
 
     public override void FullDetails()
     {
-        Console.WriteLine($"{_eventTitle}, {_description}, {_date}, {_time}, {_venuAddress}");
+        Console.WriteLine("\n---Full Details---\n");
+        Console.WriteLine($"Event: {_eventTitle}\nDescription: {_description}\nSpeaker: {_speaker}\nCapacity: {_capacity} People\nDate: {_date}\nTime: {_time}\nAddress: {_venuAddress.DisplayAddress()}");
+        Console.WriteLine();
     }
 }
