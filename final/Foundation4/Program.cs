@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Foundation4 World!");
+        string today = DateTime.Now.ToString("dd MMMM yyyy");
+        Console.WriteLine(today);
     }
 }
