@@ -2,10 +2,10 @@ using System;
 
 class Activity
 {
-    protected DateTime _date;
+    protected string _date;
     protected int _minutes;
 
-    public Activity(DateTime aDate, int aMinutes)
+    public Activity(string aDate, int aMinutes)
     {
         _date = aDate;
         _minutes = aMinutes;
