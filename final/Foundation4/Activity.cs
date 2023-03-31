@@ -3,7 +3,7 @@ using System;
 class Activity
 {
     protected string _date;
-    protected int _minutes;
+    protected double _minutes;
 
     public Activity(string aDate, int aMinutes)
     {
