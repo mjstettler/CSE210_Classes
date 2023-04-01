@@ -11,7 +11,10 @@ class Running : Activity
 
     public override void GetSummary()
     {
-        Console.WriteLine($"{_date} / {GetType()} / ({_minutes} min) Distance: {_distance} Miles, Pace: , Speed: {_distance/(_minutes/60)} mph");
+        decimal number = Convert.ToDecimal(Math.Round(_minutes/_distance,2));
+        int wholeNum = Convert.ToInt32(decimal.Truncate(number));
+        decimal seconds = Math.Round(((number - wholeNum)*60));
+        Console.WriteLine($"{_date} / {GetType()} / ({_minutes} min) Distance: {_distance} Miles, Pace: {wholeNum}:{seconds} min/mile, Speed: {Math.Round(_distance/(_minutes/60),2)} mph");
         Console.WriteLine();
     }
 }
